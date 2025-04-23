@@ -27,3 +27,39 @@
     ]
 }
 - Chọn "Next"
+- Đặt tên cho policy (ví dụ: "S3AccessPolicy")
+- (optional) Thêm mô tả
+- Chọn "Create policy"
+### 4.Tạo Role 
+- Chọn "Roles" trong menu bên trái
+- Chọn "Create role"
+- Chọn "Custom trust policy" làm loại trusted entity
+- Dán đoạn JSON policy sau (thay <ACCOUNT_ID> bằng ID của Account A, <ENVIRONMENT_NAME> bằng tên môi trường RES, và <REGION> bằng region AWS của RES)
+```sh
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::<ACCOUNT_ID>:role/<ENVIRONMENT_NAME>-custom-credential-broker-lambda-role-<REGION>"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+```
+- Chọn "Next"
+- Chọn policy bạn vừa tạo ("S3AccessPolicy")
+- Chọn "Next"
+- Đặt tên cho role (ví dụ: "S3AccessRole")
+- Trong phần "Add Tag", thêm key là res:Resource và value là s3-bucket-iam-role
+- Chọn "Create role"
+  ### 5.Sử dụng IAM Role trong RES
+  - Copy ARN của IAM role vừa tạo.
+  - Đăng nhập vào RES console.
+  - Chọn "S3 Bucket" trong menu bên trái.
+  - Chọn "Add Bucket" và điền thông tin bucket S3 từ Account B.
+  - Mở "Advanced settings - optional" và điền ARN của IAM role vào ô "IAM role ARN".
+  - Chọn "Add Bucket".
+  ## Bước 2: Sửa đổi Bucket Policy trong Account B
