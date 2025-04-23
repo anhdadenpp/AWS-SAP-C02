@@ -1,4 +1,6 @@
 # Link follow: https://docs.aws.amazon.com/res/latest/ug/S3-buckets-cross-account-access.html
-<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DfJZWEoLGoKM&psig=AOvVaw3VFdgOrX48yjI6gj-x4esZ&ust=1745469421661000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOjtl7mq7YwDFQAAAAAdAAAAABAI">
+
 ## Bước 1: Tạo IAM Role trong Account A (tài khoản RES)
  # 1.Đăng nhập vào AWS Management Console của Account A
+ # 2. Mở IAM Console
+ - Tìm và chọn "Policies" của IAM 
