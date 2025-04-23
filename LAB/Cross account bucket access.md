@@ -6,7 +6,7 @@
 - Chọn "Create policy"
 - Chọn tab "JSON"
 - Dán đoạn JSON policy sau (thay <BUCKET-NAME> bằng tên S3 bucket trong Account B)
-  ```sh
+   ```sh
   {
     "Version": "2012-10-17",
     "Statement": [
@@ -26,4 +26,4 @@
         }
     ]
 }
-  ```
+- Chọn "Next"
