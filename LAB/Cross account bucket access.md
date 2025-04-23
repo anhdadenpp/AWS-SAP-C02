@@ -55,14 +55,14 @@
 - Đặt tên cho role (ví dụ: "S3AccessRole")
 - Trong phần "Add Tag", thêm key là res:Resource và value là s3-bucket-iam-role
 - Chọn "Create role"
-  ### 5.Sử dụng IAM Role trong RES
+### 5.Sử dụng IAM Role trong RES
   - Copy ARN của IAM role vừa tạo.
   - Đăng nhập vào RES console.
   - Chọn "S3 Bucket" trong menu bên trái.
   - Chọn "Add Bucket" và điền thông tin bucket S3 từ Account B.
   - Mở "Advanced settings - optional" và điền ARN của IAM role vào ô "IAM role ARN".
   - Chọn "Add Bucket".
-  ## Bước 2: Sửa đổi Bucket Policy trong Account B
+## Bước 2: Sửa đổi Bucket Policy trong Account B
   - Đăng nhập vào AWS Management Console của Account B.
   - Mở S3 Console:
   - Tìm và chọn "S3" trong danh sách các dịch vụ.
