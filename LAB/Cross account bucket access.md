@@ -63,3 +63,38 @@
   - Mở "Advanced settings - optional" và điền ARN của IAM role vào ô "IAM role ARN".
   - Chọn "Add Bucket".
   ## Bước 2: Sửa đổi Bucket Policy trong Account B
+  - Đăng nhập vào AWS Management Console của Account B.
+  - Mở S3 Console:
+  - Tìm và chọn "S3" trong danh sách các dịch vụ.
+  - Sửa Bucket Policy:
+  - Chọn bucket bạn muốn cấp quyền truy cập.
+  - Chọn tab "Permissions" và chọn "Bucket Policy".
+  - Thêm policy sau (thay <AccountA_ID> bằng ID của Account A và <BUCKET-NAME> bằng tên bucket S3)
+    ```sh
+    {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::<AccountA_ID>:role/S3AccessRole"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ListBucket",
+                "s3:DeleteObject",
+                "s3:AbortMultipartUpload"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<BUCKET-NAME>",
+                "arn:aws:s3:::<BUCKET-NAME>/*"
+            ]
+        }
+    ]
+}
+- Chọn "Save"
+  ### Lưu ý quan trọng
+- Thay thế các giá trị giữ chỗ: Đảm bảo bạn đã thay thế tất cả các giá trị như <BUCKET-NAME>, <ACCOUNT_ID>, <ENVIRONMENT_NAME>, <REGION>, và <AccountA_ID> bằng thông tin thực tế của bạn.
+- Kiểm tra kỹ quyền: Xác minh rằng các quyền được cấp là đủ cho nhu cầu của bạn, nhưng không cấp quyền thừa để đảm bảo bảo mật.
+- Tuân thủ nguyên tắc bảo mật: Luôn tuân thủ các nguyên tắc bảo mật của AWS khi cấp quyền truy cập giữa các tài khoản.
