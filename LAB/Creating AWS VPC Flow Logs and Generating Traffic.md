@@ -33,8 +33,46 @@
 - Click on Add Route :0.0.0.0/0 InternetGateway
 ![8_36_57](https://github.com/user-attachments/assets/1ced69b1-b2c1-4e8f-8433-2f3089d48bb1)
 
-5. Create a Subnet.
-6. Create VPC Flow Logs.
-7. Create an EC2 Instance.
-8. Generating Traffic
-9. Viewing log events in CloudWatch Log groups.
+4. Create a Subnet.
+- Subnet 1 :  10.1.1.0/24 US East(N.Virginia)/us-east-1a
+5. Create VPC Flow Logs.
+- CloudWatch with role VPCFlowLog_Role
+6. Create an EC2 Instance.
+- t2. micro
+- Linux 2
+- Public subnet
+- VPCFlowLog_Role
+- SG : Inbound SSH, HTTP
+7. Generating Traffic
+- After SSH to EC2
+- This command allows you to switch to the superuser or root user. 
+```
+sudo su
+```
+- This command updates the packages and software on the EC2 instance.
+```
+yum -y update
+```
+- This command installs the Apache HTTP Server, commonly known as Apache. Apache is a widely used web server software that enables the hosting of websites and serves web content.
+```
+yum install httpd -y
+```
+- This command changes the current directory to the default location where web content is served by Apache.
+```
+cd /var/www/html
+```
+- This command creates a simple HTML file named “index.html” and sets its content as “Response coming from server”.
+```
+echo "Response coming from server" > /var/www/html/index.html
+```
+- This command starts the Apache web server service
+```
+systemctl start httpd
+systemctl enable httpd
+systemctl status httpd
+```
+- Copy your instance's Public-IP/index.html, paste it into your browser and hit enter.
+![public-ip-index](https://github.com/user-attachments/assets/49a7de8c-dc2b-4085-a1d5-5fdd78d208a4)
+8. Viewing log events in CloudWatch Log groups.
+![log_events](https://github.com/user-attachments/assets/609e80db-0e75-40c2-944b-519837194ecb)
+
